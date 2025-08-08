@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.4'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '3.2.4' // usei uma versão estável mais recente
+    id 'io.spring.dependency-management' version '1.1.4'
     id 'org.graalvm.buildtools.native' version '0.10.6'
 }
 
@@ -25,11 +25,35 @@ repositories {
 }
 
 dependencies {
+    // Spring Boot core (inclui suporte a beans, eventos, etc.)
     implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Controller REST (Web layer)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // JPA para persistência (porta de saída típica)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Banco de dados H2 (apenas para testes ou dev, pode trocar por PostgreSQL, MySQL etc.)
+    runtimeOnly 'com.h2database:h2'
+
+    // Lombok para evitar boilerplate
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring DevTools para hot reload no dev
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Validação com javax.validation (para @Valid)
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+    // ModelMapper (opcional: para mapear DTO <-> entidade)
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+
+    // Testes
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-core:5.11.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.11.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

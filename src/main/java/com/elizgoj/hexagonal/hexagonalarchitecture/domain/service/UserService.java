@@ -1,7 +1,11 @@
 package com.elizgoj.hexagonal.hexagonalarchitecture.domain.service;
 
 import com.elizgoj.hexagonal.hexagonalarchitecture.domain.entity.User;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
 
     public static String validarUsuario(User user) {
